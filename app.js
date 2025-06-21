@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended :true}))
 app.use(express.static(path.join(__dirname , "public")))
 
-app.get('/' , function(req , res){
+app.get('https://vikrantan5.github.io/khatabook2/' , function(req , res){
     fs.readdir(`./hisaab` , function(err , files){
         if(err) return res.status(500).send(err)
         res.render("index" , {files:files})
@@ -46,7 +46,7 @@ app.get("/hisaab/:filename" , function(req , res){
 app.get('/delete/:filename' , function(req  ,res){
     fs.unlink(`./hisaab/${req.params.filename}` , function(err){
         if(err) res.status(500).send(err)
-        res.redirect('/')
+        res.redirect('https://vikrantan5.github.io/khatabook2/')
     })
 } )
 
@@ -54,7 +54,7 @@ app.get('/delete/:filename' , function(req  ,res){
 app.post("/update/:filename" , function(req , res){
     fs.writeFile(`./hisaab/${req.params.filename}` , req.body.content , function(err){
         if(err) res.status(500).send(err)
-            res.redirect('/')
+            res.redirect('https://vikrantan5.github.io/khatabook2/')
     })
 })
 
@@ -73,7 +73,7 @@ app.post("/createhisaab", function (req, res) {
       // File doesn't exist — create it directly
       fs.writeFile(basePath, `${req.body.content}`, function (err) {
         if (err) return res.status(500).send(err);
-        res.redirect("/");
+        res.redirect("https://vikrantan5.github.io/khatabook2/");
       });
     } else {
       // File exists — check for next available filename
@@ -87,7 +87,7 @@ app.post("/createhisaab", function (req, res) {
             // File with this name doesn't exist — create it
             fs.writeFile(newPath, `${req.body.content}`, function (err) {
               if (err) return res.status(500).send(err);
-              res.redirect("/");
+              res.redirect("https://vikrantan5.github.io/khatabook2/");
             });
           } else {
             // File exists — try next number
